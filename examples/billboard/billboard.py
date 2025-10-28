@@ -154,10 +154,10 @@ def create_billboard_view(args, isStandard):
                                     args.BILLBOARD_DATASET_NAME_TO_BE_CREATED,
                                     args.bb_standard)
     else:
-        source_id = "{}.{}.{}".format(args.PROJECT_ID,
+        source_id = "{}.{}.{}".format(args.BILLING_EXPORT_PROJECT_ID,
                                       args.DETAILED_BILLING_EXPORT_DATASET_NAME,
                                       args.detailed_table)
-        view_id = "{}.{}.{}".format(args.PROJECT_ID, detailedBBDataset,
+        view_id = "{}.{}.{}".format(args.VIEW_PROJECT_ID, detailedBBDataset,
                                     args.bb_detailed)
 
     print('source_id={} and view_id={}'.format(source_id, view_id))
@@ -224,12 +224,12 @@ def generate_datastudio_url(args):
 
 def remove_billboard_dataset(args):
     standard_view_id = "{}.{}.{}".format(
-        args.PROJECT_ID, args.BILLBOARD_DATASET_NAME_TO_BE_CREATED,
+        args.VIEW_PROJECT_ID, args.BILLBOARD_DATASET_NAME_TO_BE_CREATED,
         args.bb_standard)
     bq_client.delete_table(standard_view_id, not_found_ok=True)
     print("Billboard view {} deleted.".format(standard_view_id))
     detailed_view_id = "{}.{}.{}".format(
-        args.PROJECT_ID, args.BILLBOARD_DATASET_NAME_TO_BE_CREATED,
+        args.VIEW_PROJECT_ID, args.BILLBOARD_DATASET_NAME_TO_BE_CREATED,
         args.bb_detailed)
     bq_client.delete_table(detailed_view_id, not_found_ok=True)
     print("Billboard view {} deleted.".format(detailed_view_id))
@@ -314,6 +314,7 @@ def main(argv):
     
     args.standard_table = "gcp_billing_export_v1_01B6A1_F57AAF_19B66D"
     args.detailed_table = "gcp_billing_export_resource_v1_01B6A1_F57AAF_19B66D"
+
     args.bb_standard = "billboard"
     args.bb_detailed = "billboard_detail"
 
