@@ -294,22 +294,26 @@ def main(argv):
     #     print("Cloud Billing API is not enabled.")
     #     return sys.exit(1)
 
-    try:
-        project_billing_info = billing.CloudBillingClient(
-        ).get_project_billing_info(name=project_id_temp)
-    except PermissionDenied as pde:
-        print("Permission Denied, check project level permission.")
-        print(pde.message)
-        return sys.exit(1)
+    ####### added by me 
+    #try:
+    #    project_billing_info = billing.CloudBillingClient(
+    #    ).get_project_billing_info(name=project_id_temp)
+    #except PermissionDenied as pde:
+    #    print("Permission Denied, check project level permission.")
+    #    print(pde.message)
+    #    return sys.exit(1)
 
-    billing_account_name = project_billing_info.billing_account_name.split(
-        "/")[1]
+    #billing_account_name = project_billing_info.billing_account_name.split(
+    #    "/")[1]
 
-    print("Project billing account=" + billing_account_name, "\n")
-    args.standard_table = "gcp_billing_export_v1_" + \
-        billing_account_name.replace('-', '_')
-    args.detailed_table = "gcp_billing_export_resource_v1_" + \
-        billing_account_name.replace('-', '_')
+    #print("Project billing account=" + billing_account_name, "\n")
+    #args.standard_table = "gcp_billing_export_v1_" + \
+    #    billing_account_name.replace('-', '_')
+    #args.detailed_table = "gcp_billing_export_resource_v1_" + \
+    #    billing_account_name.replace('-', '_')
+    
+    args.standard_table = "gcp_billing_export_v1_01B6A1_F57AAF_19B66D"
+    args.detailed_table = "gcp_billing_export_resource_v1_01B6A1_F57AAF_19B66D"
     args.bb_standard = "billboard"
     args.bb_detailed = "billboard_detail"
 
